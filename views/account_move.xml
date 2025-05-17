@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <record model="ir.actions.server" id="action_account_move_create_global_invoice">
+        <field name="name">Ajuste de factura</field>
+        <field name="model_id" ref="account.model_account_move" />
+        <field name="groups_id" eval="[Command.link(ref('account.group_account_invoice'))]" />
+        <field name="binding_model_id" ref="account.model_account_move" />
+        <field name="state">code</field>
+        <field name="binding_view_types">list</field>
+        <field name="code">
+            if records:
+                action = records.action_to_draft_single()
+        </field>
+    </record>
+
+    <!-- Server Action -->
+    <record id="action_update_value_with_standard_price" model="ir.actions.server">
+        <field name="name">Actualizar Value con Standard Price</field>
+        <field name="model_id" ref="stock_account.model_stock_valuation_layer"/>
+        <field name="state">code</field>
+        <field name="binding_model_id" ref="stock_account.model_stock_valuation_layer"/>
+        <field name="binding_view_types">tree</field>
+        <field name="code">
+            action = records.action_update_value_with_standard_price()
+        </field>
+    </record>
+
+</odoo>
