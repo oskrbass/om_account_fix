@@ -17,4 +17,4 @@ class StockValuationLayer(models.Model):
     def action_update_value_with_standard_price(self):
         for layer in self:
             if layer.product_id and layer.product_id.standard_price:
-                layer.value = layer.product_id.standard_price * abs(layer.quantity)
+                layer.value = layer.product_id.standard_price * layer.quantity
